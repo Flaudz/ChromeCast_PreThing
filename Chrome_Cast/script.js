@@ -1,7 +1,7 @@
 var session = null;
 
 window.onload = function() {
-	var loadCastInterval = this.setInterval(function() {
+	const loadCastInterval = this.setInterval(function() {
 		if (chrome.cast.isAvailable) {
 			console.log("Cast has loaded.");
 			clearInterval(loadCastInterval);
@@ -13,9 +13,9 @@ window.onload = function() {
 };
 
 function initializeCastApi() {
-	var applicationID = chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID;
-	var sessionRequest = new chrome.cast.SessionRequest(applicationID);
-	var apiConfig = new chrome.cast.ApiConfig(
+	const applicationID = chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID;
+	const sessionRequest = new chrome.cast.SessionRequest(applicationID);
+	const apiConfig = new chrome.cast.ApiConfig(
 		sessionRequest,
 		sessionListener,
 		receiverListener
@@ -77,12 +77,12 @@ function loadMedia() {
 		return;
 	}
 
-	var mediaInfo = new chrome.cast.media.MediaInfo(
+	const mediaInfo = new chrome.cast.media.MediaInfo(
 		"https://firebasestorage.googleapis.com/v0/b/metnix-62704.appspot.com/o/Iron_Man.mp4?alt=media&token=0b6aed7e-bc35-4dc8-a5ed-1342ccebfb2c"
 	);
 	mediaInfo.contentType = "video/mp4";
 
-	var request = new chrome.cast.media.LoadRequest(mediaInfo);
+	const request = new chrome.cast.media.LoadRequest(mediaInfo);
 	request.autoplay = true;
 
 	session.loadMedia(request, onLoadSuccess, onLoadError);
@@ -97,7 +97,7 @@ function onLoadError(err) {
 }
 
 function stopApp() {
-	var status = chrome.cast.requestSession.STOPPED;
+	const status = chrome.cast.requestSession.STOPPED;
 	session.stop(onRequestSessionSuccess, onLaunchError);
 }
 
